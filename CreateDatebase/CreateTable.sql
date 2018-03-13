@@ -6,7 +6,7 @@ Create table UserInfo
 	[Password]			varchar(100) not null,
 	[NickName]			varchar(10) not null,	--昵称
 	[AccountId]			varchar(100),			--参与账单Id（用，分开，每人最多创建10个）
-	[Category]			varchar(max),			--自定义类别Id
+	[Category]			varchar(max),			--自定义类别Id（用，分开）
 	[CreateDate]		datetime not null,
 	[WeChat]			varchar(50),			--微信号
 	[PhoneNumber]		varchar(15),			--手机号

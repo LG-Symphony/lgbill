@@ -97,6 +97,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Bll\AccountCategoryBll.cs" />
+    <Compile Include="Bll\AccountListBll.cs" />
     <Compile Include="Bll\BaseBll.cs" />
     <Compile Include="Bll\Token\FindPwdVerifyBll.cs" />
     <Compile Include="Bll\Token\LoginStateBll.cs" />
@@ -111,6 +113,8 @@
     <Compile Include="Core\SqlHelper.cs" />
     <Compile Include="Core\TokenHelper.cs" />
     <Compile Include="Core\VerifyCodeHelper.cs" />
+    <Compile Include="Dal\AccountCategoryDal.cs" />
+    <Compile Include="Dal\AccountListDal.cs" />
     <Compile Include="Dal\BaseDal.cs" />
     <Compile Include="Dal\Token\FindPwdVerifyDal.cs" />
     <Compile Include="Dal\Token\LoginStateDal.cs" />
@@ -120,6 +124,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountCategory.cs" />
+    <Compile Include="Models\AccountList.cs" />
     <Compile Include="Models\Token\FindPwdVerify.cs" />
     <Compile Include="Models\Token\LoginState.cs" />
     <Compile Include="Models\Token\Verify.cs" />
