@@ -1,7 +1,7 @@
 --用户信息
 Create table UserInfo
 (
-	[Id]				int identity(1,1),
+	[Id]				varchar(20),			--180314164900_abcdefg
 	[Email]				varchar(50),
 	[Password]			varchar(100) not null,
 	[NickName]			varchar(10) not null,	--昵称
@@ -15,9 +15,9 @@ Create table UserInfo
 
 --用户登录时效表
 Create Table LoginState(
-	[Email]				varchar(50),			--用户Email
+	[UserId]			varchar(20),			--用户Email
 	[StartTime]			datetime,				--最后一次验证时间
-	Primary key([Email])						--主键
+	Primary key([UserId])						--主键
 )
 --验证码表
 Create Table Verify(
@@ -28,7 +28,7 @@ Create Table Verify(
 )
 --找回密码邮箱验证码
 Create Table FindPwdVerify(
-	[Email]				varchar(50) not null,	--用户Email
+	[Email]			varchar(50) not null,	--用户Email
 	[StartTime]			datetime not null,		--最后一次验证时间
 	[Code]				varchar(6) not null,	--验证码
 	Primary key([Email])						--主键不能自增
@@ -36,7 +36,7 @@ Create Table FindPwdVerify(
 
 --账单List
 Create Table AccountList(
-	[Code]				varchar(15),			--此为表名（用户ID_5位随机数）
+	[Code]				varchar(15),			--此为表名（A_用户ID_5位随机数）
 	[CreateUserId]		int not null,			--创建人Id
 	[AllUserId]			varchar(max) not null,	--使用人Id（用，分开）
 	[Name]				varchar(20) not null,	--账单名（默认同[Code]字段）
@@ -46,7 +46,7 @@ Create Table AccountList(
 )
 
 --账单
---Create Table [AccountId](
+--Create Table [AccountList->Code](
 --	[Id]				int identity(1,1),
 --	[RecorderId]		int not null,			--记账人Id
 --	[UserId]			varchar(max),			--使用人Id（用，分开）
@@ -63,5 +63,6 @@ Create Table AccountCategory(
 	[Name]				varchar(6),
 	[CreateUserId]		int not null,			--创建人Id
 	[CreateDate]		datetime not null,
-	Primary key([Id])	
+	[UserNum]			int not null default(0),--使用人数（作为推荐类别）
+	Primary key([Id])
 )

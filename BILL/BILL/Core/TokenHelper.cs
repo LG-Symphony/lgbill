@@ -14,14 +14,14 @@ namespace BILL.Core
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public static void WriteLoginStateTokenByEmail(string Email)
+        public static void WriteLoginStateTokenByUserId(string UserId)
         {
             //若已登录，则刷新时间
-            if (!CheckLoginStateByEmail(Email))
+            if (!CheckLoginStateByUserId(UserId))
             {
                 LoginState loginState = new LoginState
                 {
-                    Email = Email,
+                    UserId = UserId,
                     StartTime = DateTime.Now
                 };
                 LoginStateBll.Insert(loginState);
@@ -31,18 +31,18 @@ namespace BILL.Core
         /// 注销用户登陆状态
         /// </summary>
         /// <param name="Id"></param>
-        public static void ClearLoginStateByEmail(string Email)
+        public static void ClearLoginStateByUserId(string UserId)
         {
-            LoginStateBll.ExecuteSql("delete from LoginState where Email ='" + Email + "'");
+            LoginStateBll.ExecuteSql("delete from LoginState where UserId ='" + UserId + "'");
         }
         /// <summary>
         /// 检查用户登陆状态
         /// </summary>
         /// <param name="Email">用户邮箱</param>
         /// <returns></returns>
-        public static bool CheckLoginStateByEmail(string Email)
+        public static bool CheckLoginStateByUserId(string UserId)
         {
-            LoginState loginToken = LoginStateBll.GetModelByEmail(Email);
+            LoginState loginToken = LoginStateBll.GetModelByUserId(UserId);
             //若已登录，则刷新时间
             if (loginToken != null && (DateTime.Now - loginToken.StartTime).Minutes < 30)
             {

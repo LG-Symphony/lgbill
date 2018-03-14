@@ -31,7 +31,7 @@ namespace BILL.Dal
             }
             return model;
         }
-        public T GetModelById(int Id)
+        public T GetModelById(string Id)
         {
             T model = null;
             try

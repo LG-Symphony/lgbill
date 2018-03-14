@@ -9,7 +9,7 @@ namespace BILL.Models
     public class UserInfo
     {
         public UserInfo() { }
-        public int Id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// 用户名
         /// </summary>
@@ -42,8 +42,6 @@ namespace BILL.Models
         /// 手机号
         /// </summary>
         public string PhoneNumber { get; set; } = "";
-        
-
 
     }
     public class UserInofoMap : ClassMapper<UserInfo>

@@ -15,9 +15,18 @@ namespace BILL.Bll
         /// </summary>
         /// <param name="CreateUserId"></param>
         /// <returns></returns>
-        public static IList<AccountCategory> GetListByCreateUserId(int CreateUserId)
+        public static IList<AccountCategory> GetListByCreateUserId(string CreateUserId)
         {
             return dal.GetListByCreateUserId(CreateUserId);
+        }
+        /// <summary>
+        /// 根据Id返回Model
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public static AccountCategory GetModelById(int Id)
+        {
+            return dal.GetModelById(Id);
         }
     }
 }

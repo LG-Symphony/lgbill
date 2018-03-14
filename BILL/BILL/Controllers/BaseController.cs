@@ -122,9 +122,9 @@ namespace BILL.Controllers
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonResponse CheckLogin(string Email)
+        public JsonResponse CheckLogin(string UserId)
         {
-            if(TokenHelper.CheckLoginStateByEmail(Email))
+            if(TokenHelper.CheckLoginStateByUserId(UserId))
             {
                 return OkResponse(null);
             }

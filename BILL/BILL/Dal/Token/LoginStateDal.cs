@@ -8,14 +8,14 @@ namespace BILL.Dal.Token
     public class LoginStateDal<T> : BaseDal<T> where T : LoginState
     {
         public LoginStateDal(string connectionString) : base(connectionString) { }
-        public T GetModelByEmail(string Email)
+        public T GetModelByUserId(string UserId)
         {
             T model = null;
             try
             {
                 PredicateGroup pdg = new PredicateGroup();
                 pdg.Predicates = new List<IPredicate>();
-                pdg.Predicates.Add(Predicates.Field<T>(a => a.Email, Operator.Eq, Email));
+                pdg.Predicates.Add(Predicates.Field<T>(a => a.UserId, Operator.Eq, UserId));
                 model = GetModel(pdg);
             }
             catch (Exception ex)

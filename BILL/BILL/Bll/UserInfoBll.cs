@@ -19,7 +19,7 @@ namespace BILL.Bll
         {
             return dal.GetModelByEmail(Email);
         }
-        public static UserInfo GetModelById(int Id)
+        public static UserInfo GetModelById(string Id)
         {
             return dal.GetModelById(Id);
         }

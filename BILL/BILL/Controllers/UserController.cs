@@ -1,6 +1,7 @@
 ﻿using BILL.Bll;
 using BILL.Bll.Token;
 using BILL.Core;
+using BILL.Dto;
 using BILL.Models;
 using BILL.Models.Token;
 using System;
@@ -9,7 +10,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using static BILL.Dto.UserDto;
 
 namespace BILL.Controllers
 {
@@ -93,12 +93,14 @@ namespace BILL.Controllers
         [HttpPost]
         public JsonResponse ModifyPassword([FromBody] ModifyPasswordDto dto)
         {
-            if (dto.Email == null|| dto.OldPassword ==null|| dto.NewPassword ==null|| dto.Verify ==null|| dto.VerifyId ==null)
+            if (dto.UserId == null|| dto.OldPassword ==null|| dto.NewPassword ==null|| dto.Verify ==null|| dto.VerifyId ==null)
             {
                 return BadResponse("参数提供不完整");
             }
+            UserInfo model = new UserInfo();
+            model = UserInfoBll.GetModelById(dto.UserId);
             //判断用户是否登录
-            if (!CheckLogin(dto.Email).Success)
+            if (!CheckLogin(dto.UserId).Success)
             {
                 return BadResponse("用户未登录");
             }
@@ -108,8 +110,6 @@ namespace BILL.Controllers
                 return BadResponse("验证码错误");
             }
             //判断用户是否存在
-            UserInfo model = new UserInfo();
-            model = UserInfoBll.GetModelByEmail(dto.Email);
             if (model == null)
             {
                 return BadResponse("用户不存在");
@@ -155,11 +155,11 @@ namespace BILL.Controllers
             }
             //检查用户是否登录，若有登录信息则刷新时间
             //判断用户是否登录
-            if (!CheckLogin(dto.Email).Success)
+            if (!CheckLogin(model.Id).Success)
             {
                 LoginState loginState = new LoginState
                 {
-                    Email = model.Email,
+                    UserId = model.Id,
                     StartTime = DateTime.Now
                 };
                 LoginStateBll.Insert(loginState);
@@ -172,10 +172,10 @@ namespace BILL.Controllers
         /// <param name="Email"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonResponse SignOut([FromUri] string Email)
+        public JsonResponse SignOut([FromUri] string UserId)
         {
             //注销用户登陆状态
-            TokenHelper.ClearLoginStateByEmail(Email);
+            TokenHelper.ClearLoginStateByUserId(UserId);
             return OkResponse(null);
         }
     }

@@ -9,7 +9,7 @@ namespace BILL.Models.Token
     public class FindPwdVerify
     {
         /// <summary>
-        /// 用户Id
+        /// 用户Email
         /// </summary>
         public string Email { get; set; }
         /// <summary>

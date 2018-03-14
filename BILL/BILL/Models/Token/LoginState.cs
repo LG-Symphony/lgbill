@@ -7,9 +7,9 @@ namespace BILL.Models.Token
     public class LoginState
     {
         /// <summary>
-        /// 用户Email
+        /// 用户Id
         /// </summary>
-        public string Email { get; set; }
+        public string UserId { get; set; }
         /// <summary>
         /// 最后一次验证时间
         /// </summary>
@@ -20,7 +20,7 @@ namespace BILL.Models.Token
         public LoginStateMap()
         {
             Table("LoginState");
-            Map(c => c.Email).Key(KeyType.Assigned);
+            Map(c => c.UserId).Key(KeyType.Assigned);
             AutoMap();
         }
 

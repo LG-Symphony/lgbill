@@ -104,6 +104,8 @@
     <Compile Include="Bll\Token\LoginStateBll.cs" />
     <Compile Include="Bll\Token\VerifyBll.cs" />
     <Compile Include="Bll\UserInfoBll.cs" />
+    <Compile Include="Controllers\AccountCategoryController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\EmailHelper.cs" />
@@ -120,7 +122,10 @@
     <Compile Include="Dal\Token\LoginStateDal.cs" />
     <Compile Include="Dal\Token\VerifyDal.cs" />
     <Compile Include="Dal\UserInfoDal.cs" />
-    <Compile Include="Dto\UserDto.cs" />
+    <Compile Include="Dto\AccountCategoryDto.cs" />
+    <Compile Include="Dto\BaseDto.cs" />
+    <Compile Include="Dto\SignInDto.cs" />
+    <Compile Include="Dto\ModifyPasswordDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -16,7 +16,7 @@ namespace BILL.Models
         /// <summary>
         /// 创建者
         /// </summary>
-        public int CreateUserId { get; set; }
+        public string CreateUserId { get; set; }
         /// <summary>
         /// 所有使用者
         /// </summary>

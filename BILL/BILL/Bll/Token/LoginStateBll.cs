@@ -13,9 +13,9 @@ namespace BILL.Bll.Token
     public class LoginStateBll : BaseBll<LoginState>
     {
         protected static readonly LoginStateDal<LoginState> dal = new LoginStateDal<LoginState>(ConnectionString);
-        public static LoginState GetModelByEmail(string Email)
+        public static LoginState GetModelByUserId(string UserId)
         {
-            return dal.GetModelByEmail(Email);
+            return dal.GetModelByUserId(UserId);
         }
     }
 }
