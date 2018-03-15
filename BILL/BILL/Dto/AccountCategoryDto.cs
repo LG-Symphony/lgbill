@@ -9,4 +9,14 @@ namespace BILL.Dto
     {
         public string Name { get; set; }
     }
+    public class ChangeCategoryNameDto : BaseDto
+    {
+        public string OldName { get; set; }
+        public string NewName { get; set; }
+    }
+    public class ChangeCategoryShowDto : BaseDto
+    {
+        public string ShowName { get; set; }
+        public string HideName { get; set; }
+    }
 }

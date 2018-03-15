@@ -130,7 +130,7 @@ namespace BILL.Controllers
             return OkResponse(null,"密码修改成功");
         }
         /// <summary>
-        /// 登录
+        /// 登录///////////再议：（用户登录时检查类别是否丢失，对比UserInfo表中[Category]字段里的类别是否在AccountCategory表中都存在）
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>

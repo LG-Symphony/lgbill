@@ -23,13 +23,13 @@ namespace BILL.Models
         /// </summary>
         public string Nickname { get; set; }
         /// <summary>
-        /// 账单组
+        /// 使用的账单Id集合
         /// </summary>
         public string AccountId { get; set; } = "";
         /// <summary>
-        /// 创建账单数量
+        /// 使用的分类Id集合
         /// </summary>
-        public int CreateAccountNum { get; set; } = 0;
+        public string Category { get; set; } = "";
         /// <summary>
         /// 创建日期
         /// </summary>

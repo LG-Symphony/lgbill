@@ -24,9 +24,30 @@ namespace BILL.Bll
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public static AccountCategory GetModelById(int Id)
+        //public static AccountCategory GetModelById(int Id)
+        //{
+        //    return dal.GetModelById(Id);
+        //}
+
+        
+        
+
+        /// <summary>
+        /// 根据Name返回Model
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <returns></returns>
+        public static AccountCategory GetModelByName(string Name)
         {
-            return dal.GetModelById(Id);
+            return dal.GetModelByName(Name);
+        }
+        /// <summary>
+        /// 返回所有公开展示的类别
+        /// </summary>
+        /// <returns></returns>
+        public static IList<AccountCategory> GetListByIsShowEqTrue()
+        {
+            return dal.GetListByIsShowEqTrue();
         }
     }
 }

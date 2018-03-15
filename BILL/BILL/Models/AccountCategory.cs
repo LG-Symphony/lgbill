@@ -9,7 +9,7 @@ namespace BILL.Models
     public class AccountCategory
     {
         public AccountCategory() { }
-        public int Id { get; set; }
+        //public int Id { get; set; }
         /// <summary>
         /// 类别名
         /// </summary>
@@ -22,13 +22,17 @@ namespace BILL.Models
         /// 创建日期
         /// </summary>
         public DateTime CreateDate { get; set; } = DateTime.Now;
+        public int UserNum { get; set; } = 0;
+        public bool IsShow { get; set; } = false;
+
+
     }
     public class AccountCategoryMap : ClassMapper<AccountCategory>
     {
         public AccountCategoryMap()
         {
             Table("AccountList");
-            Map(c => c.Id).Key(KeyType.Identity);
+            Map(c => c.Name).Key(KeyType.Assigned);
             AutoMap();
         }
     }

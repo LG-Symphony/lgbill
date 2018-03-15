@@ -17,20 +17,43 @@ namespace BILL.Dal
             pdg.Predicates.Add(Predicates.Field<T>(a => a.CreateUserId, Operator.Eq, CreateUserId));
             return GetList(pdg);
         }
-        public T GetModelById(int Id)
+        //public T GetModelById(int Id)
+        //{
+        //    T model = null;
+        //    try
+        //    {
+        //        PredicateGroup pdg = new PredicateGroup();
+        //        pdg.Predicates = new List<IPredicate>();
+        //        pdg.Predicates.Add(Predicates.Field<T>(a => a.Id, Operator.Eq, Id));
+        //        model = GetModel(pdg);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //    return model;
+        //}
+        public T GetModelByName(string Name)
         {
             T model = null;
             try
             {
                 PredicateGroup pdg = new PredicateGroup();
                 pdg.Predicates = new List<IPredicate>();
-                pdg.Predicates.Add(Predicates.Field<T>(a => a.Id, Operator.Eq, Id));
+                pdg.Predicates.Add(Predicates.Field<T>(a => a.Name, Operator.Eq, Name));
                 model = GetModel(pdg);
             }
             catch (Exception ex)
             {
             }
             return model;
+        }
+
+        public IList<T> GetListByIsShowEqTrue()
+        {
+            PredicateGroup pdg = new PredicateGroup();
+            pdg.Predicates = new List<IPredicate>();
+            pdg.Predicates.Add(Predicates.Field<T>(a => a.IsShow, Operator.Eq, true));
+            return GetList(pdg);
         }
     }
 }

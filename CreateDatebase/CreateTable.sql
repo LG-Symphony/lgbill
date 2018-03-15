@@ -6,7 +6,7 @@ Create table UserInfo
 	[Password]			varchar(100) not null,
 	[NickName]			varchar(10) not null,	--昵称
 	[AccountId]			varchar(100),			--参与账单Id（用，分开，每人最多创建10个）
-	[Category]			varchar(max),			--自定义类别Id（用，分开）
+	[Category]			varchar(max),			--自定义类别Name（用，分开）
 	[CreateDate]		datetime not null,
 	[WeChat]			varchar(50),			--微信号
 	[PhoneNumber]		varchar(15),			--手机号
@@ -28,7 +28,7 @@ Create Table Verify(
 )
 --找回密码邮箱验证码
 Create Table FindPwdVerify(
-	[Email]			varchar(50) not null,	--用户Email
+	[Email]				varchar(50) not null,	--用户Email
 	[StartTime]			datetime not null,		--最后一次验证时间
 	[Code]				varchar(6) not null,	--验证码
 	Primary key([Email])						--主键不能自增
@@ -58,11 +58,13 @@ Create Table AccountList(
 --)
 
 --消费种类表
+--(可以考虑添加热度HOT字段，每有一次使用就+1；当日HTO，当月HOT，当年HOT，数据库作业定时删除)
 Create Table AccountCategory(
-	[Id]				int identity(1,1),
-	[Name]				varchar(6),
+	--[Id]				int identity(1,1),
+	[Name]				varchar(8),				--8个字
 	[CreateUserId]		int not null,			--创建人Id
 	[CreateDate]		datetime not null,
 	[UserNum]			int not null default(0),--使用人数（作为推荐类别）
-	Primary key([Id])
+	[IsShow]			bit,
+	Primary key([Name])
 )
