@@ -166,9 +166,8 @@ namespace BILL.Controllers
         {
             //将所有dto.ShowName的IsShow改为true
             //将所有dto.HideName的IsShow改为false
-            //dto.ShowName->'1','2'
+            //dto.ShowName->"'1','2'"
             var sql = "update AccountCategory set IsShow = 1 where Name in("+ dto.ShowName + ");update AccountCategory set IsShow = 0 where UserId in(" + dto.HideName + ")";
-            
             if (!AccountCategoryBll.ExecuteSql(sql))
             {
                 return BadResponse("网络错误，请重试！");

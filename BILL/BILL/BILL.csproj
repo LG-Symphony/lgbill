@@ -123,12 +123,14 @@
     <Compile Include="Dal\Token\VerifyDal.cs" />
     <Compile Include="Dal\UserInfoDal.cs" />
     <Compile Include="Dto\AccountCategoryDto.cs" />
+    <Compile Include="Dto\AccountDto.cs" />
     <Compile Include="Dto\BaseDto.cs" />
     <Compile Include="Dto\SignInDto.cs" />
     <Compile Include="Dto\ModifyPasswordDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountCategory.cs" />
     <Compile Include="Models\AccountList.cs" />
     <Compile Include="Models\Token\FindPwdVerify.cs" />
