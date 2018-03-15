@@ -54,12 +54,12 @@ namespace BILL.Controllers
         /// <summary>
         /// 检查邮箱是否注册
         /// </summary>
-        /// <param name="Email">邮箱</param>
+        /// <param name="email">邮箱</param>
         /// <returns></returns>
         [HttpGet]
-        public JsonResponse CheckUser([FromUri] string Email)
+        public JsonResponse CheckUser([FromUri] string email)
         {
-            if (UserInfoBll.CheckUser(Email))
+            if (UserInfoBll.CheckUser(email))
             {
                 return BadResponse("邮箱已被注册");
             }
@@ -71,12 +71,12 @@ namespace BILL.Controllers
         /// <summary>
         /// 检查昵称是否注册
         /// </summary>
-        /// <param name="Nickname">昵称</param>
+        /// <param name="nickname">昵称</param>
         /// <returns></returns>
         [HttpGet]
-        public JsonResponse CheckNickname([FromUri] string Nickname)
+        public JsonResponse CheckNickname([FromUri] string nickname)
         {
-            if (UserInfoBll.CheckNickname(Nickname))
+            if (UserInfoBll.CheckNickname(nickname))
             {
                 return BadResponse("昵称已被注册");
             }
@@ -172,10 +172,10 @@ namespace BILL.Controllers
         /// <param name="Email"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonResponse SignOut([FromUri] string UserId)
+        public JsonResponse SignOut([FromUri] string userId)
         {
             //注销用户登陆状态
-            TokenHelper.ClearLoginStateByUserId(UserId);
+            TokenHelper.ClearLoginStateByUserId(userId);
             return OkResponse(null);
         }
     }

@@ -52,8 +52,8 @@ Create Table AccountList(
 --	[UserId]			varchar(max),			--使用人Id（用，分开）
 --	[CreateDate]		datetime not null,		--记账日期
 --	[Money]				real not null,			--金额
---	[Category]			int,					--消费类别Id		
---	[Note]				varchar(300)			--描述
+--	[Category]			int,					--消费类别Name		
+--	[Note]				varchar(300)			--备注
 --	Primary key([Id])
 --)
 
