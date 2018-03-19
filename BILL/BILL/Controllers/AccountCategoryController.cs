@@ -21,6 +21,11 @@ namespace BILL.Controllers
         [HttpPost]
         public JsonResponse AddCategory([FromBody] AccountCategoryDto dto)
         {
+            //判断用户是否登录
+            if (!TokenHelper.CheckLoginStateByUserId(dto.UserId))
+            {
+                return BadResponse("用户未登录", null, false);
+            }
             //查询有没有
             var model = AccountCategoryBll.GetModelByName(dto.Name);
             //有的话则UserNum+1
@@ -65,6 +70,11 @@ namespace BILL.Controllers
         [HttpPost]
         public JsonResponse DeleteUserCategory([FromBody] AccountCategoryDto dto)
         {
+            //判断用户是否登录
+            if (!TokenHelper.CheckLoginStateByUserId(dto.UserId))
+            {
+                return BadResponse("用户未登录", null, false);
+            }
             //查询该类别的Id
             var categoryModel = AccountCategoryBll.GetModelByName(dto.Name);
             //从UserInfo中的Category字段里删除该类别
@@ -108,6 +118,11 @@ namespace BILL.Controllers
         [HttpPost]
         public JsonResponse ChangeCategoryName([FromBody] ChangeCategoryNameDto dto)
         {
+            //判断用户是否登录
+            if (!TokenHelper.CheckLoginStateByUserId(dto.UserId))
+            {
+                return BadResponse("用户未登录", null, false);
+            }
             //获取更改者信息
             var userModel = UserInfoBll.GetModelById(dto.UserId);
             if (userModel == null)
@@ -164,6 +179,11 @@ namespace BILL.Controllers
         [HttpPost]
         public JsonResponse ChangeCategoryShow([FromBody] ChangeCategoryShowDto dto)
         {
+            //判断用户是否登录
+            if (!TokenHelper.CheckLoginStateByUserId(dto.UserId))
+            {
+                return BadResponse("用户未登录", null, false);
+            }
             //将所有dto.ShowName的IsShow改为true
             //将所有dto.HideName的IsShow改为false
             //dto.ShowName->"'1','2'"

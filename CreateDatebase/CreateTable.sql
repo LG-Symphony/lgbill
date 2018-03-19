@@ -41,10 +41,10 @@ Create Table FindPwdVerify(
 --账单List
 drop table AccountList
 Create Table AccountList(
-	[Code]				varchar(15),			--此为表名（A_用户ID_5位随机数）
-	[CreateUserId]		varchar(20) not null,			--创建人Id
+	[Code]				varchar(15),			--此为表名（ZYYMMDD(年月日的数字)3位随机字符串+5位随机数字and字符串）例：Z180319axDze021
+	[CreateUserId]		varchar(20) not null,	--创建人Id
 	[AllUserId]			varchar(max) not null,	--使用人Id（用，分开，包括创建者）
-	[Name]				varchar(20) not null,	--账单名（默认同[Code]字段）
+	[Name]				varchar(20) not null,	--账单名（默认为“我的手账”）
 	[CreateDate]		datetime not null,
 	[Member]			int default(1),			--此账单包含用户数
 	Primary key([Code])
@@ -68,7 +68,7 @@ drop table AccountCategory
 Create Table AccountCategory(
 	--[Id]				int identity(1,1),
 	[Name]				varchar(8),				--8个字
-	[CreateUserId]		varchar(20) not null,			--创建人Id
+	[CreateUserId]		varchar(20) not null,	--创建人Id
 	[CreateDate]		datetime not null,
 	[UserNum]			int not null default(0),--使用人数（作为推荐类别）
 	[IsShow]			bit,

@@ -10,7 +10,8 @@ namespace BILL.Models
     {
         public AccountList() { }
         /// <summary>
-        /// 账单Id-->此为表名（用户ID_5位随机数）
+        /// 账单Id-->此为表名（ZYYMMDD(年月日的数字)3位随机字符串+5位随机数字and字符串）
+        /// 例：Z180319axDze021
         /// </summary>
         public string Code { get; set; }
         /// <summary>

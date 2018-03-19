@@ -14,5 +14,10 @@ namespace BILL.Bll
         {
             return dal.GetModelByCode(Code);
         }
+        public static IList<AccountList> GetListByCreateUserId(string CreateUserId)
+        {
+            return dal.GetListByCreateUserId(CreateUserId);
+        }
+        
     }
 }

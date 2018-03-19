@@ -19,8 +19,13 @@ namespace BILL.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResponse AddAccount([FromBody] AccountListDto dto)
+        public JsonResponse AddAccount([FromBody] AccountDto dto)
         {
+            //判断用户是否登录
+            if (!TokenHelper.CheckLoginStateByUserId(dto.UserId))
+            {
+                return BadResponse("用户未登录", null, false);
+            }
             string sql = "INSERT INTO " + dto.TableName + " VALUES ";
             foreach (Account model in dto.List)
             {

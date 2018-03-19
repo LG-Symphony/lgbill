@@ -26,5 +26,12 @@ namespace BILL.Dal
             }
             return model;
         }
+        public IList<T> GetListByCreateUserId(string CreateUserId)
+        {
+            PredicateGroup pdg = new PredicateGroup();
+            pdg.Predicates = new List<IPredicate>();
+            pdg.Predicates.Add(Predicates.Field<T>(a => a.CreateUserId, Operator.Eq, CreateUserId));
+            return GetList(pdg);
+        }
     }
 }

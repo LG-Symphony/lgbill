@@ -113,7 +113,7 @@ namespace BILL.Controllers
             }
             else
             {
-                return BadResponse(null,"验证码错误");
+                return BadResponse("验证码错误",null);
             }
         }
         /// <summary>
@@ -124,13 +124,13 @@ namespace BILL.Controllers
         [HttpGet]
         public JsonResponse CheckLogin(string UserId)
         {
-            if(TokenHelper.CheckLoginStateByUserId(UserId))
+            if(!TokenHelper.CheckLoginStateByUserId(UserId))
             {
-                return OkResponse(null);
+                return BadResponse("用户未登录",null, false);
             }
             else
             {
-                return BadResponse(null, "用户未登录");
+                return OkResponse(null);
             }
         }
         /// <summary>

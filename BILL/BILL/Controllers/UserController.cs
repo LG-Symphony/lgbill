@@ -93,22 +93,23 @@ namespace BILL.Controllers
         [HttpPost]
         public JsonResponse ModifyPassword([FromBody] ModifyPasswordDto dto)
         {
+            //判断用户是否登录
+            if (!TokenHelper.CheckLoginStateByUserId(dto.UserId))
+            {
+                return BadResponse("用户未登录", null, false);
+            }
             if (dto.UserId == null|| dto.OldPassword ==null|| dto.NewPassword ==null|| dto.Verify ==null|| dto.VerifyId ==null)
             {
                 return BadResponse("参数提供不完整");
             }
-            UserInfo model = new UserInfo();
-            model = UserInfoBll.GetModelById(dto.UserId);
-            //判断用户是否登录
-            if (!CheckLogin(dto.UserId).Success)
-            {
-                return BadResponse("用户未登录");
-            }
             //判断验证码是否输入正确
-            if (!CheckVerify(dto.VerifyId, dto.Verify).Success)
+            if (!TokenHelper.CheckVerify(dto.VerifyId, dto.Verify))
             {
                 return BadResponse("验证码错误");
             }
+            UserInfo model = new UserInfo();
+            model = UserInfoBll.GetModelById(dto.UserId);
+            
             //判断用户是否存在
             if (model == null)
             {
@@ -141,21 +142,21 @@ namespace BILL.Controllers
             {
                 return BadResponse("参数提供不完整");
             }
-            //检查验证码是否正确
-            if (!CheckVerify(dto.VerifyId, dto.Verify).Success)
+            //判断验证码是否输入正确
+            if (!TokenHelper.CheckVerify(dto.VerifyId, dto.Verify))
             {
-                return BadResponse(null, "验证码错误");
+                return BadResponse("验证码错误");
             }
             //检查用户名密码是否正确
             UserInfo model = new UserInfo();
             model = UserInfoBll.GetModelByEmail(dto.Email);
             if (model == null)
             {
-                return BadResponse(null, "用户不存在");
+                return BadResponse("用户不存在", null);
             }
             //检查用户是否登录，若有登录信息则刷新时间
             //判断用户是否登录
-            if (!CheckLogin(model.Id).Success)
+            if (!TokenHelper.CheckLoginStateByUserId(model.Id))
             {
                 LoginState loginState = new LoginState
                 {
