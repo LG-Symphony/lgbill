@@ -24,14 +24,32 @@ namespace BILL.Controllers
             string sql = "INSERT INTO " + dto.TableName + " VALUES ";
             foreach (Account model in dto.List)
             {
+                //(
                 sql += "(";
-                
-                sql += ("'" + model.RecorderId + "'," + "'" + model.RecorderId + "'," );
-
-                sql += ")";
+                //RecorderId
+                sql += ("'" + model.RecorderId + "',");
+                //UserId
+                sql += ("'" + model.UserId + "',");
+                //CreateDate
+                sql += ("'" + DateTime.Now + "',");
+                //Money
+                sql += ("" + model.Money + ",");
+                //Category
+                sql += ("'" + model.Category + "',");
+                //Note
+                sql += ("'" + model.Note + "'");
+                //)
+                sql += "),";
+            }
+            sql = sql.Substring(0, sql.Length - 1);
+            if (!BaseBll<Account>.ExecuteSql(sql))
+            {
+                BadResponse("添加失败！");
             }
             return OkResponse(null, "添加成功！");
         }
+        //
+        //修改账目，新建一张修改记录表
         
     }
 }

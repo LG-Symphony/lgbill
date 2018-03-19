@@ -1,4 +1,5 @@
 --用户信息
+drop table UserInfo
 Create table UserInfo
 (
 	[Id]				varchar(20),			--180314164900_abcdefg
@@ -14,12 +15,14 @@ Create table UserInfo
 )
 
 --用户登录时效表
+drop table LoginState
 Create Table LoginState(
 	[UserId]			varchar(20),			--用户Email
 	[StartTime]			datetime,				--最后一次验证时间
 	Primary key([UserId])						--主键
 )
 --验证码表
+drop table Verify
 Create Table Verify(
 	[Id]				varchar(10),			--验证码Id（随机10位字符串）
 	[Code]				varchar(4),				--最后一次验证时间
@@ -27,6 +30,7 @@ Create Table Verify(
 	Primary key([Id])							--主键不能自增
 )
 --找回密码邮箱验证码
+drop table FindPwdVerify
 Create Table FindPwdVerify(
 	[Email]				varchar(50) not null,	--用户Email
 	[StartTime]			datetime not null,		--最后一次验证时间
@@ -35,9 +39,10 @@ Create Table FindPwdVerify(
 )
 
 --账单List
+drop table AccountList
 Create Table AccountList(
 	[Code]				varchar(15),			--此为表名（A_用户ID_5位随机数）
-	[CreateUserId]		int not null,			--创建人Id
+	[CreateUserId]		varchar(20) not null,			--创建人Id
 	[AllUserId]			varchar(max) not null,	--使用人Id（用，分开，包括创建者）
 	[Name]				varchar(20) not null,	--账单名（默认同[Code]字段）
 	[CreateDate]		datetime not null,
@@ -48,21 +53,22 @@ Create Table AccountList(
 --账单
 --Create Table [AccountList->Code](
 --	[Id]				int identity(1,1),
---	[RecorderId]		int not null,			--记账人Id
+--	[RecorderId]		varchar(20) not null,	--记账人Id
 --	[UserId]			varchar(max),			--使用人Id（用，分开）
 --	[CreateDate]		datetime not null,		--记账日期
 --	[Money]				real not null,			--金额
---	[Category]			int,					--消费类别Name		
+--	[Category]			varchar(8) not null,	--消费类别Name		
 --	[Note]				varchar(300)			--备注
 --	Primary key([Id])
 --)
 
 --消费种类表
 --(可以考虑添加热度HOT字段，每有一次使用就+1；当日HTO，当月HOT，当年HOT，数据库作业定时删除)
+drop table AccountCategory
 Create Table AccountCategory(
 	--[Id]				int identity(1,1),
 	[Name]				varchar(8),				--8个字
-	[CreateUserId]		int not null,			--创建人Id
+	[CreateUserId]		varchar(20) not null,			--创建人Id
 	[CreateDate]		datetime not null,
 	[UserNum]			int not null default(0),--使用人数（作为推荐类别）
 	[IsShow]			bit,

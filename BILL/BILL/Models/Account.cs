@@ -7,7 +7,7 @@ namespace BILL.Models
 {
     public class Account
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         /// <summary>
         /// 记账人Id
         /// </summary>
@@ -19,7 +19,7 @@ namespace BILL.Models
         /// <summary>
         /// 记账日期
         /// </summary>
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.Now;
         /// <summary>
         /// 金额
         /// </summary>
@@ -31,6 +31,6 @@ namespace BILL.Models
         /// <summary>
         /// 备注
         /// </summary>
-        public string Note { get; set; }
+        public string Note { get; set; } = "";
     }
 }

@@ -22,10 +22,10 @@ BEGIN
 			Create Table ' + @TableName + '(
 				[Id]				int identity(1,1),
 				[RecorderId]		varchar(20) not null,	--记账人Id
-				[UserId]			varchar(max),			--使用人Id（用，分开）
+				[UserId]			varchar(max) not null,	--使用人Id（用，分开）
 				[CreateDate]		datetime not null,		--记账日期
 				[Money]				real not null,			--金额
-				[Category]			int,					--消费类别Id		
+				[Category]			varchar(8) not null,	--消费类别Name		
 				[Note]				varchar(300),			--描述
 				Primary key([Id])
 			)'
