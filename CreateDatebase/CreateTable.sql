@@ -2,7 +2,7 @@
 Create table UserInfo
 (
 	[Id]				varchar(20),			--180314164900_abcdefg
-	[Email]				varchar(50),
+	[Email]				varchar(50) not null,
 	[Password]			varchar(100) not null,
 	[NickName]			varchar(10) not null,	--昵称
 	[AccountId]			varchar(100),			--参与账单Id（用，分开，每人最多创建10个）
@@ -38,7 +38,7 @@ Create Table FindPwdVerify(
 Create Table AccountList(
 	[Code]				varchar(15),			--此为表名（A_用户ID_5位随机数）
 	[CreateUserId]		int not null,			--创建人Id
-	[AllUserId]			varchar(max) not null,	--使用人Id（用，分开）
+	[AllUserId]			varchar(max) not null,	--使用人Id（用，分开，包括创建者）
 	[Name]				varchar(20) not null,	--账单名（默认同[Code]字段）
 	[CreateDate]		datetime not null,
 	[Member]			int default(1),			--此账单包含用户数

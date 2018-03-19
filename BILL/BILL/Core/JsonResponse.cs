@@ -11,6 +11,7 @@ namespace BILL.Core
         public JsonResponse()
         {
             Success = true;
+            LoginState = true;
             Message = "";
         }
         /// <summary>
@@ -24,9 +25,7 @@ namespace BILL.Core
         /// <summary>
         ///JsonString  返回的数据结果
         /// </summary>
-        public string Data
-        {
-            get; set;
-        }
+        public string Data { get; set; }
+        public bool LoginState { get; set; }
     }
 }

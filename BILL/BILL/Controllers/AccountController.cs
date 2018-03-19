@@ -1,4 +1,5 @@
-﻿using BILL.Core;
+﻿using BILL.Bll;
+using BILL.Core;
 using BILL.Dto;
 using BILL.Models;
 using System;
@@ -24,19 +25,13 @@ namespace BILL.Controllers
             foreach (Account model in dto.List)
             {
                 sql += "(";
-                //foreach ()
-                //{
-<<<<<<< HEAD
-                        //查询出添加人Id和使用人Id
-=======
-
->>>>>>> c7efe56b143be71103f37232293d56930b80b5d6
-                //}
+                
                 sql += ("'" + model.RecorderId + "'," + "'" + model.RecorderId + "'," );
 
                 sql += ")";
             }
             return OkResponse(null, "添加成功！");
         }
+        
     }
 }

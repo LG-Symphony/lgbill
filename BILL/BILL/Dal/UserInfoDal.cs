@@ -66,5 +66,12 @@ namespace BILL.Dal
             }
             return model;
         }
+        public IList<T> GetListByIdList(string[] IdList)
+        {
+            PredicateGroup pdg = new PredicateGroup();
+            pdg.Predicates = new List<IPredicate>();
+            pdg.Predicates.Add(Predicates.Field<T>(a => a.Id, Operator.Eq, IdList));
+            return GetList(pdg);
+        }
     }
 }

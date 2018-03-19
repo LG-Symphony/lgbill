@@ -53,6 +53,11 @@ namespace BILL.Bll
             //存在该昵称
             return true;
         }
+
+        public static IList<UserInfo> GetListByIdList(string[] IdList)
+        {
+            return dal.GetListByIdList(IdList);
+        }
     }
 
 }

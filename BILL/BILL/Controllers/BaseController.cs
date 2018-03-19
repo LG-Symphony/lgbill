@@ -26,7 +26,6 @@ namespace BILL.Controllers
         {
             JsonResponse response = new JsonResponse();
             response.Message = msg;
-            //response.Data = data;
             response.Data = data.ToJson();
 
             return response;
@@ -38,12 +37,13 @@ namespace BILL.Controllers
         /// <param name="msg"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        protected JsonResponse BadResponse(string msg, object data = null)
+        protected JsonResponse BadResponse(string msg, object data = null,bool loginState = true)
         {
 
             JsonResponse response = new JsonResponse();
             response.Success = false;
             response.Message = msg;
+            response.LoginState = loginState;
             response.Data = data.ToJson();
             return response;
         }
