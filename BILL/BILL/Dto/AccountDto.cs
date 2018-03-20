@@ -19,6 +19,7 @@ namespace BILL.Dto
     }
     public class AccountListDto : BaseDto
     {
+        public string Code { get; set; }
         public string Name { get; set; }
         /// <summary>
         /// 所有人员id以逗号分割，最后一个逗号不省略
