@@ -57,7 +57,7 @@ Create Table AccountListLog(
 	[CreateDate]		datetime not null,
 	[OldInfo]			varchar(max) not null,
 	[NewInfo]			varchar(max) not null,
-	[ConfirmUser]		varchar(max) not null,
+	[ConfirmUser]		varchar(max) not null,--已经确认知晓改动的所有人员，可以展示在账单中
 	[Type]				int not null,
 	[Note]				varchar(200),
 	Primary key([Id])

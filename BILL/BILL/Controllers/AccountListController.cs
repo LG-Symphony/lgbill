@@ -21,7 +21,7 @@ namespace BILL.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResponse AddAccount([FromBody] AccountListDto dto)
+        public JsonResponse AddAccountList([FromBody] AccountListDto dto)
         {
             //判断用户是否登录
             if (!TokenHelper.CheckLoginStateByUserId(dto.UserId))
@@ -220,6 +220,25 @@ namespace BILL.Controllers
             {
                 return BadResponse("修改失败!", null);
             }
+        }
+        /// <summary>
+        /// 删除账单
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public JsonResponse DeleteAccountList([FromBody] AccountListDto dto)
+        {
+            //判断用户是否登录
+            if (!TokenHelper.CheckLoginStateByUserId(dto.UserId))
+            {
+                return BadResponse("用户未登录", null, false);
+            }
+            //获取账单基本信息
+            //通知账单成员
+            //写入操作记录
+            //（若都确认后、自动删除该表，每一个人确认时都查看此人是否为最后确认的人、若是、则直接删除账单
+            //否则十五天后数据库定时作业会删除该表）
+            return OkResponse(null);
         }
     }
 }
