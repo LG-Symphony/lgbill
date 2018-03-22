@@ -229,12 +229,17 @@ namespace BILL.Controllers
         public JsonResponse DeleteAccountList([FromBody] AccountListDto dto)
         {
             //判断用户是否登录
-            if (!TokenHelper.CheckLoginStateByUserId(dto.UserId))
-            {
+            if (!TokenHelper.CheckLoginStateByUserId(dto.UserId)) {
                 return BadResponse("用户未登录", null, false);
             }
             //获取账单基本信息
-            //通知账单成员
+            AccountList accountListModel = new AccountList();
+            accountListModel = AccountListBll.GetModelByCode(dto.Code);
+            if (accountListModel == null) {
+                return BadResponse("无改账单信息!", null);
+            }
+            //获取账单成员并通知账单成员
+
             //写入操作记录
             //（若都确认后、自动删除该表，每一个人确认时都查看此人是否为最后确认的人、若是、则直接删除账单
             //否则十五天后数据库定时作业会删除该表）
