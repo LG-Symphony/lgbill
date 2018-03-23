@@ -102,6 +102,7 @@
     <Compile Include="Bll\AccountListLogBll.cs" />
     <Compile Include="Bll\AccountLogBll.cs" />
     <Compile Include="Bll\BaseBll.cs" />
+    <Compile Include="Bll\SystemNoticeBll.cs" />
     <Compile Include="Bll\Token\FindPwdVerifyBll.cs" />
     <Compile Include="Bll\Token\LoginStateBll.cs" />
     <Compile Include="Bll\Token\VerifyBll.cs" />
@@ -110,12 +111,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountListController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\SystemNoticeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\EmailHelper.cs" />
     <Compile Include="Core\JsonHelper.cs" />
     <Compile Include="Core\JsonResponse.cs" />
     <Compile Include="Core\PasswordHelper.cs" />
     <Compile Include="Core\SqlHelper.cs" />
+    <Compile Include="Core\SystemNoticeHelper.cs" />
     <Compile Include="Core\TokenHelper.cs" />
     <Compile Include="Core\VerifyCodeHelper.cs" />
     <Compile Include="Dal\AccountCategoryDal.cs" />
@@ -123,6 +126,7 @@
     <Compile Include="Dal\AccountListLogDal.cs" />
     <Compile Include="Dal\AccountLogDal.cs" />
     <Compile Include="Dal\BaseDal.cs" />
+    <Compile Include="Dal\SystemNoticeDal.cs" />
     <Compile Include="Dal\Token\FindPwdVerifyDal.cs" />
     <Compile Include="Dal\Token\LoginStateDal.cs" />
     <Compile Include="Dal\Token\VerifyDal.cs" />
@@ -140,6 +144,7 @@
     <Compile Include="Models\AccountList.cs" />
     <Compile Include="Models\AccountListLog.cs" />
     <Compile Include="Models\AccountLog.cs" />
+    <Compile Include="Models\SystemNotice.cs" />
     <Compile Include="Models\Token\FindPwdVerify.cs" />
     <Compile Include="Models\Token\LoginState.cs" />
     <Compile Include="Models\Token\Verify.cs" />

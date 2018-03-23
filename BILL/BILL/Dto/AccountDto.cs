@@ -22,7 +22,7 @@ namespace BILL.Dto
         public string Code { get; set; }
         public string Name { get; set; }
         /// <summary>
-        /// 所有人员id以逗号分割，最后一个逗号不省略
+        /// 所有人员id以逗号分割，最后一个逗号省略
         /// </summary>
         public string AllUserId { get; set; }
     }

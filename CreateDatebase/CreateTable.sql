@@ -108,7 +108,7 @@ Create Table SystemNotice(
 	[Id]				int identity(1,1),
 	[UserId]			varchar(20) not null,	--ÓÃ»§Id
 	[Content]			varchar(max) not null,
-	[CreateDate]		datetime not null,
-
+	[CreateDate]		datetime default getdate() not null,
+	[Confirm]			bit default 0 not null,
 	Primary key([Id])
 )

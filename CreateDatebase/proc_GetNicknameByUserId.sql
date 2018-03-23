@@ -10,7 +10,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[proc_GetNicknameByUserId] 
-	@UserId				VARCHAR(15)
+	@UserId				VARCHAR(MAX)
 AS 
 
 BEGIN

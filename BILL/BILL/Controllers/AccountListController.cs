@@ -56,7 +56,7 @@ namespace BILL.Controllers
                 + TokenHelper.GetRandomString(3, false, true, true, false, "") + TokenHelper.GetRandomString(5, true, true, true, false, ""),
                 CreateDate = time,
                 CreateUserId = dto.UserId,
-                Member = dto.AllUserId.Count(o => o.Equals(",")),
+                Member = dto.AllUserId.Split(',').Length,
                 Name = accountName
             };
             //新建账单表
@@ -236,14 +236,29 @@ namespace BILL.Controllers
             AccountList accountListModel = new AccountList();
             accountListModel = AccountListBll.GetModelByCode(dto.Code);
             if (accountListModel == null) {
-                return BadResponse("无改账单信息!", null);
+                return BadResponse("无该账单信息!", null);
             }
-            //获取账单成员并通知账单成员
+            string[] userIdArray = dto.AllUserId.Split(',');
+            if (userIdArray.Length == 1)
+            {
+                SystemNoticeBll.ExecuteSql("DELETE FROM AccountList WHERE Code='" + dto.Code + "';DROP TTABLE " + dto.Code);
+                return OkResponse(null, "账单已删除。");
+            }
+            //获取账单成员并通知账单成员（写入通知表）
+            string content = "账单:" + accountListModel.Name + "即将被账单创建者删除，请校验账单信息无资金纠纷后确认删除。";
+            SystemNoticeBll.ExecuteSql(SystemNoticeHelper.InsertNotice(dto.AllUserId, content));
 
             //写入操作记录
-            //（若都确认后、自动删除该表，每一个人确认时都查看此人是否为最后确认的人、若是、则直接删除账单
+            AccountListLog log = new AccountListLog
+            {
+                Code = dto.Code,
+                NewInfo = "删除账单" + accountListModel.Name,
+                Type = LogType.Delete
+            };
+            AccountListLogBll.Insert(log);
+            //若都确认后、自动删除该表，每一个人确认时都查看此人是否为最后确认的人、若是、则直接删除账单
             //否则十五天后数据库定时作业会删除该表）
-            return OkResponse(null);
+            return OkResponse(null,"账单已提交删除，待所有成员均已确认后账单可立即删除，若确认时间超过15日则自动删除。");
         }
     }
 }
