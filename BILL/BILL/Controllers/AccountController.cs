@@ -55,6 +55,10 @@ namespace BILL.Controllers
         }
         //
         //修改账目，新建一张修改记录表
-        
+        [HttpPost]
+        public JsonResponse ModifyAccount([FromBody] AccountDto dto)
+        {
+
+        }
     }
 }

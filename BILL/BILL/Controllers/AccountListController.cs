@@ -99,9 +99,8 @@ namespace BILL.Controllers
                 };
                 returnList.Add(userModel);
             }
-            return OkResponse(returnList, "添加成功！");
+            return OkResponse(returnList, "请求成功！");
         }
-
         /// <summary>
         /// 修改账单基本信息
         /// </summary>
@@ -226,6 +225,7 @@ namespace BILL.Controllers
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
+        [HttpPost]
         public JsonResponse DeleteAccountList([FromBody] AccountListDto dto)
         {
             //判断用户是否登录
@@ -259,6 +259,24 @@ namespace BILL.Controllers
             //若都确认后、自动删除该表，每一个人确认时都查看此人是否为最后确认的人、若是、则直接删除账单
             //否则十五天后数据库定时作业会删除该表）
             return OkResponse(null,"账单已提交删除，待所有成员均已确认后账单可立即删除，若确认时间超过15日则自动删除。");
+        }
+        /// <summary>
+        /// 获取用户的账单LIST
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResponse UserAccountList([FromUri] string UserId)
+        {
+            //判断用户是否登录
+            if (!TokenHelper.CheckLoginStateByUserId(UserId))
+            {
+                return BadResponse("用户未登录", null, false);
+            }
+            //获取账单列表
+            List<AccountList> accountList = new List<AccountList>();
+            accountList = AccountListBll.GetListByCreateUserId(UserId).ToList();
+            return OkResponse(accountList, "请求成功！");
         }
     }
 }
